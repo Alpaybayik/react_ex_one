@@ -34,18 +34,16 @@ function App() {
   );
 }
 */
-
-
 /* useRef - forwardRef */
 
 
-import { useRef , forwardRef } from "react";
+/*import { useRef , forwardRef } from "react";
 
-/*function Test(props,ref) {
+function Test(props,ref) {
   return(<input ref={ref} type="text" {...props}/>);
 }
 
-Test = forwardRef(Test)*/
+Test = forwardRef(Test)
 
 //Ya Da
 
@@ -69,5 +67,36 @@ function App() {
       <button onClick={focusInput}>Focusla</button>
     </>
   );
+}*/
+
+/* Örnek Todo Uygulaması */
+
+
+import { useState } from "react";
+
+function App() {
+
+  const [todos,setTodos] = useState([]);
+  const [todo,setTodo] = useState();
+
+  function addToDo(e){
+      e.preventDefault();
+      setTodos([...todos,todo]);
+      setTodo('');
+  }
+
+  return (
+    <form onSubmit={addToDo}>
+      <input type="text" value={todo || ''} onChange={e=>setTodo(e.target.value)}/>
+      <button type="submit">Ekle</button>
+
+      <ul>
+      {todos.map((todo,index)=>(
+        <li key={index}>{todo}</li>
+      ))}
+      </ul>
+    </form>
+  );
 }
+
 export default App;
