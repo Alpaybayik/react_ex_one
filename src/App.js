@@ -18,7 +18,7 @@ function App() {
     </div>
   );
 }*/
-
+/* Bir Kaç Basit İşlem
 import { useState } from "react";
 import Test from "./Test";
 
@@ -30,6 +30,43 @@ function App() {
     <>
       <button onClick={()=> setShow(show => !show)}>{show ? 'Gizle' : 'Göster' }</button>
       {show && <Test />}
+    </>
+  );
+}
+*/
+
+
+/* useRef - forwardRef */
+
+
+import { useRef , forwardRef } from "react";
+
+/*function Test(props,ref) {
+  return(<input ref={ref} type="text" {...props}/>);
+}
+
+Test = forwardRef(Test)*/
+
+//Ya Da
+
+const Test = forwardRef((props,ref) => {
+  return(<input ref={ref} type="text" {...props}/>);
+});
+
+function App() {
+
+  const inputRef = useRef();
+  const inputRefTwo = useRef();
+
+  const focusInput = () =>{
+      inputRefTwo.current.focus()
+  }
+
+  return (
+    <>
+      <input type="text" ref={inputRef}/>
+      <Test ref={inputRefTwo} />
+      <button onClick={focusInput}>Focusla</button>
     </>
   );
 }
