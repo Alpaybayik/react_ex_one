@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-function Button({children,variant = 'default'}){
+function Buttons({children,variant = 'default'}){
     return (
         <button className={classNames({
             "p-4 h-10 flex items-center rounded transition-all duration-100 ease-linear": true,
@@ -11,4 +11,4 @@ function Button({children,variant = 'default'}){
     )
 }
 
-export default Button;
+export default Buttons;

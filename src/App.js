@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
+/*import logo from "./logo.svg";
 import './Style.css';
-import Button from './components/Button.js';
+import Button from './components/Buttons.js';
 import Tab from './components/Tab.js';
 function App() {
   return (
@@ -17,6 +17,20 @@ function App() {
       </Tab>
     </div>
   );
-}
+}*/
 
+import { useState } from "react";
+import Test from "./Test";
+
+function App() {
+
+  const [show,setShow] = useState(false);
+
+  return (
+    <>
+      <button onClick={()=> setShow(show => !show)}>{show ? 'Gizle' : 'Göster' }</button>
+      {show && <Test />}
+    </>
+  );
+}
 export default App;
