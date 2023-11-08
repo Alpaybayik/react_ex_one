@@ -71,7 +71,7 @@ function App() {
 
 /* Örnek Todo Uygulaması */
 
-
+/*
 import { useState } from "react";
 
 function App() {
@@ -98,5 +98,55 @@ function App() {
     </form>
   );
 }
+*/
 
+/* Örnek Todo Uygulaması useReducer */
+
+
+import { useState , useReducer } from "react";
+
+function exReducer(state,action){
+  switch (action.type) {
+    case "SET_TODO":
+      return {
+        ...state,
+        todo: action.value
+      }
+    
+    case "ADD_TODO":
+      return {
+        ...state,
+        todo:'',
+        todos:[...state.todos,action.todo]
+      }
+  }
+}
+
+function App() {
+  const [state,dispatch] = useReducer(exReducer,{
+    todos: [],
+    todo: ''
+  }); 
+
+  function addToDo(e){
+      e.preventDefault();
+      dispatch({
+        type:'ADD_TODO',
+        todo:state.todo
+      })
+  }
+
+  return (
+    <form onSubmit={addToDo}>
+      <input type="text" value={state.todo || ''} onChange={e=>dispatch({type:'SET_TODO',value:e.target.value})}/>
+      <button type="submit">Ekle</button>
+
+      <ul>
+      {state.todos.map((todo,index)=>(
+        <li key={index}>{todo}</li>
+      ))}
+      </ul>
+    </form>
+  );
+}
 export default App;
